@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10111a">
+  <meta name="description" content="Orbit Hub — study, fitness, productivity and personal growth in one offline-friendly app.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/orbit.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Orbit Hub</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="Orbit Hub home"><span class="brand-mark">O</span><span><b>Orbit Hub</b><small>Learn • Grow • Repeat</small></span></a>
+      <nav id="nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="home"><span>⌂</span><span data-i18n="home">Home</span></button>
+        <button class="nav-item" data-view="study"><span>▤</span><span data-i18n="study">Study Centre</span></button>
+        <button class="nav-item" data-view="fitness"><span>✦</span><span data-i18n="fitness">Fitness</span></button>
+        <button class="nav-item" data-view="planner"><span>☷</span><span data-i18n="planner">Planner</span></button>
+        <button class="nav-item" data-view="growth"><span>↗</span><span data-i18n="growth">Personal Growth</span></button>
+        <button class="nav-item" data-view="settings"><span>⚙</span><span data-i18n="settings">Settings & Backup</span></button>
+      </nav>
+      <div class="sidebar-foot"><span class="status-dot"></span><span data-i18n="offlineReady">Offline-friendly app</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">O</span><b>Orbit Hub</b></div>
+        <div class="topbar-right">
+          <span class="today" id="todayLabel"></span>
+          <button id="langToggle" class="small-button" aria-label="Switch language">हिंदी</button>
+        </div>
+      </header>
+      <div id="viewRoot" class="view-root" aria-live="polite"></div>
+      <footer class="footer">Orbit Hub <span>•</span> Your progress stays on this device unless you export a backup.</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
