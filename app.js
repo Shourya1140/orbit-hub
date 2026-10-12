@@ -153,4 +153,345 @@
   $("#langToggle").addEventListener("click",toggleLanguage);
   if("serviceWorker" in navigator && (location.protocol==="https:"||location.hostname==="localhost"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
   render();
+  
+function workEnergyPowerNote(index) {
+  const done = state.completedChapters.includes("physics:" + index);
+
+  return `
+    <div class="note-content">
+      <div class="notice">
+        ${tr(
+          "Complete chapter module • Class 11 Physics • NCERT-aligned study support. Use your current prescribed textbook and school syllabus to confirm coverage.",
+          "पूर्ण अध्याय मॉड्यूल • कक्षा 11 भौतिक विज्ञान • NCERT-अनुरूप अध्ययन सहायता। पाठ्यक्रम की पुष्टि अपनी वर्तमान पाठ्यपुस्तक और स्कूल के सिलेबस से करें।"
+        )}
+      </div>
+
+      <h2>${tr("Work, Energy and Power", "कार्य, ऊर्जा और शक्ति")}</h2>
+      <p>${tr(
+        "This chapter explains how forces transfer energy, how energy is stored, and how quickly work is done.",
+        "यह अध्याय समझाता है कि बल ऊर्जा का स्थानांतरण कैसे करते हैं, ऊर्जा कैसे संचित होती है और कार्य कितनी तेजी से होता है।"
+      )}</p>
+
+      <h3>${tr("1. Learning objectives", "1. सीखने के उद्देश्य")}</h3>
+      <ul>
+        <li>${tr("Calculate work done by a constant force.", "स्थिर बल द्वारा किए गए कार्य की गणना करना।")}</li>
+        <li>${tr("Understand kinetic energy and the work–energy theorem.", "गतिज ऊर्जा और कार्य–ऊर्जा प्रमेय को समझना।")}</li>
+        <li>${tr("Use gravitational and spring potential energy.", "गुरुत्वीय और स्प्रिंग स्थितिज ऊर्जा का उपयोग करना।")}</li>
+        <li>${tr("Apply conservation of mechanical energy.", "यांत्रिक ऊर्जा संरक्षण लागू करना।")}</li>
+        <li>${tr("Calculate average and instantaneous power.", "औसत और तात्क्षणिक शक्ति की गणना करना।")}</li>
+      </ul>
+
+      <h3>${tr("2. Work done by a constant force", "2. स्थिर बल द्वारा किया गया कार्य")}</h3>
+      <p>${tr(
+        "Work is done when a force has a component along the displacement. Work is a scalar quantity.",
+        "जब बल का कोई घटक विस्थापन की दिशा में होता है, तब कार्य होता है। कार्य एक अदिश राशि है।"
+      )}</p>
+      <p><b>${tr("Formula", "सूत्र")}:</b> W = F s cos θ</p>
+      <ul>
+        <li>${tr("W = work done, measured in joules (J).", "W = कार्य, जूल (J) में।")}</li>
+        <li>${tr("F = force in newtons (N); s = displacement in metres (m).", "F = बल, न्यूटन (N) में; s = विस्थापन, मीटर (m) में।")}</li>
+        <li>${tr("θ is the angle between force and displacement.", "θ बल और विस्थापन के बीच का कोण है।")}</li>
+      </ul>
+      <p>${tr(
+        "Positive work: force helps displacement. Negative work: force opposes displacement. Zero work: force is perpendicular to displacement, or displacement is zero.",
+        "धनात्मक कार्य: बल विस्थापन में सहायता करता है। ऋणात्मक कार्य: बल विस्थापन का विरोध करता है। शून्य कार्य: बल विस्थापन के लंबवत है या विस्थापन शून्य है।"
+      )}</p>
+      <p>${tr(
+        "Examples: friction usually does negative work on a sliding object; centripetal force does zero work in ideal uniform circular motion because it is perpendicular to instantaneous displacement.",
+        "उदाहरण: फिसलती वस्तु पर घर्षण सामान्यतः ऋणात्मक कार्य करता है। आदर्श एकसमान वृत्तीय गति में अभिकेन्द्रीय बल शून्य कार्य करता है, क्योंकि वह तात्क्षणिक विस्थापन के लंबवत होता है।"
+      )}</p>
+
+      <h3>${tr("3. Variable force and force–displacement graph", "3. परिवर्ती बल और बल–विस्थापन ग्राफ")}</h3>
+      <p>${tr(
+        "If force changes with position, work is the signed area under the F–x graph. In calculus notation, W = ∫ Fₓ dx.",
+        "यदि बल स्थिति के साथ बदलता है, तो कार्य F–x ग्राफ के नीचे का चिह्नित क्षेत्रफल होता है। कलन के संकेत में W = ∫ Fₓ dx."
+      )}</p>
+      <p>${tr(
+        "For a straight-line graph, calculate the relevant area using a rectangle, triangle or trapezium. Areas below the displacement axis contribute negative work.",
+        "सीधी रेखा वाले ग्राफ के लिए आयत, त्रिभुज या समलंब का क्षेत्रफल निकालें। विस्थापन-अक्ष के नीचे का क्षेत्र ऋणात्मक कार्य दर्शाता है।"
+      )}</p>
+
+      <h3>${tr("4. Kinetic energy", "4. गतिज ऊर्जा")}</h3>
+      <p>${tr(
+        "Kinetic energy is the energy an object has because of its motion.",
+        "गतिज ऊर्जा वह ऊर्जा है जो किसी वस्तु में उसकी गति के कारण होती है।"
+      )}</p>
+      <p><b>K = ½mv²</b></p>
+      <p>${tr(
+        "Here m is mass in kilograms and v is speed in metres per second. Kinetic energy is non-negative in classical mechanics and is measured in joules.",
+        "यहाँ m द्रव्यमान (किलोग्राम) और v चाल (मीटर प्रति सेकंड) है। शास्त्रीय यांत्रिकी में गतिज ऊर्जा ऋणात्मक नहीं होती और इसे जूल में मापा जाता है।"
+      )}</p>
+
+      <h3>${tr("5. Work–energy theorem", "5. कार्य–ऊर्जा प्रमेय")}</h3>
+      <p><b>W<sub>net</sub> = ΔK = K<sub>f</sub> − K<sub>i</sub></b></p>
+      <p>${tr(
+        "The net work done by all forces on an object equals its change in kinetic energy.",
+        "किसी वस्तु पर सभी बलों द्वारा किया गया कुल कार्य उसकी गतिज ऊर्जा में परिवर्तन के बराबर होता है।"
+      )}</p>
+      <p>${tr(
+        "If the net work is positive, kinetic energy increases; if negative, kinetic energy decreases; if zero, the initial and final kinetic energies are equal.",
+        "कुल कार्य धनात्मक होने पर गतिज ऊर्जा बढ़ती है; ऋणात्मक होने पर घटती है; शून्य होने पर प्रारंभिक और अंतिम गतिज ऊर्जाएँ समान होती हैं।"
+      )}</p>
+
+      <h3>${tr("6. Potential energy", "6. स्थितिज ऊर्जा")}</h3>
+      <p>${tr(
+        "Potential energy is associated with the configuration or position of interacting objects. Its numerical value depends on the chosen zero level.",
+        "स्थितिज ऊर्जा वस्तुओं की स्थिति या उनकी व्यवस्था से संबंधित होती है। इसका संख्यात्मक मान चुने गए शून्य स्तर पर निर्भर करता है।"
+      )}</p>
+      <p><b>${tr("Near Earth's surface", "पृथ्वी की सतह के निकट")}:</b> U = mgh</p>
+      <p>${tr(
+        "This relation applies when g is approximately constant and h is measured relative to the chosen reference level.",
+        "यह संबंध तब लागू होता है जब g लगभग स्थिर हो और h चुने गए संदर्भ स्तर से मापा गया हो।"
+      )}</p>
+      <p><b>${tr("Ideal spring", "आदर्श स्प्रिंग")}:</b> U = ½kx²</p>
+      <p>${tr(
+        "Here k is the spring constant in N/m and x is the extension or compression from natural length, in metres. The ideal spring force is F = −kx.",
+        "यहाँ k स्प्रिंग नियतांक (N/m) और x प्राकृतिक लंबाई से बढ़ाव या संपीड़न (मीटर) है। आदर्श स्प्रिंग का बल F = −kx होता है।"
+      )}</p>
+
+      <h3>${tr("7. Conservative and non-conservative forces", "7. संरक्षी और असंरक्षी बल")}</h3>
+      <ul>
+        <li>${tr("For a conservative force, work between two points is path-independent; work over a closed path is zero.", "संरक्षी बल के लिए दो बिंदुओं के बीच कार्य पथ पर निर्भर नहीं करता; बंद पथ में कुल कार्य शून्य होता है।")}</li>
+        <li>${tr("Gravity and an ideal spring force are conservative forces.", "गुरुत्वाकर्षण और आदर्श स्प्रिंग बल संरक्षी बल हैं।")}</li>
+        <li>${tr("Friction is generally non-conservative; it can transfer mechanical energy into thermal energy.", "घर्षण सामान्यतः असंरक्षी होता है; यह यांत्रिक ऊर्जा को ऊष्मीय ऊर्जा में बदल सकता है।")}</li>
+      </ul>
+
+      <h3>${tr("8. Conservation of mechanical energy", "8. यांत्रिक ऊर्जा का संरक्षण")}</h3>
+      <p><b>K + U = constant</b></p>
+      <p>${tr(
+        "When only conservative forces do work, total mechanical energy (kinetic plus potential energy) remains constant. Energy may change form, such as potential energy becoming kinetic energy.",
+        "जब केवल संरक्षी बल कार्य करते हैं, तब कुल यांत्रिक ऊर्जा (गतिज + स्थितिज ऊर्जा) स्थिर रहती है। ऊर्जा अपना रूप बदल सकती है, जैसे स्थितिज ऊर्जा का गतिज ऊर्जा में बदलना।"
+      )}</p>
+      <p>${tr(
+        "When friction or another non-conservative force does work, mechanical energy may change. Total energy is still conserved when all relevant forms, including thermal energy, are counted.",
+        "जब घर्षण या कोई अन्य असंरक्षी बल कार्य करता है, तो यांत्रिक ऊर्जा बदल सकती है। ऊष्मीय ऊर्जा सहित सभी रूपों को गिनने पर कुल ऊर्जा फिर भी संरक्षित रहती है।"
+      )}</p>
+
+      <h3>${tr("9. Power", "9. शक्ति")}</h3>
+      <p><b>${tr("Average power", "औसत शक्ति")}:</b> P<sub>avg</sub> = W/Δt</p>
+      <p><b>${tr("Instantaneous power", "तात्क्षणिक शक्ति")}:</b> P = F · v = Fv cos θ</p>
+      <p>${tr(
+        "Power measures how quickly work is done or energy is transferred. Its SI unit is the watt (W), where 1 W = 1 J/s.",
+        "शक्ति बताती है कि कार्य कितनी तेजी से होता है या ऊर्जा का स्थानांतरण कितनी तेजी से होता है। इसका SI मात्रक वाट (W) है, जहाँ 1 W = 1 J/s."
+      )}</p>
+
+      <h3>${tr("10. Efficiency", "10. दक्षता")}</h3>
+      <p><b>Efficiency = (useful output energy ÷ input energy) × 100%</b></p>
+      <p>${tr(
+        "Efficiency is usually less than 100% in real devices because some input energy is transferred to less useful forms, such as heat or sound.",
+        "वास्तविक उपकरणों में दक्षता सामान्यतः 100% से कम होती है, क्योंकि कुछ ऊर्जा ऊष्मा या ध्वनि जैसे कम उपयोगी रूपों में चली जाती है।"
+      )}</p>
+
+      <h3>${tr("11. Worked examples", "11. हल किए गए उदाहरण")}</h3>
+
+      <details>
+        <summary>${tr("Example 1 — Work at an angle", "उदाहरण 1 — कोण पर किया गया कार्य")}</summary>
+        <p>${tr(
+          "A 10 N force moves an object 5 m. The angle between force and displacement is 60°. Find work done.",
+          "10 N का बल किसी वस्तु को 5 m विस्थापित करता है। बल और विस्थापन के बीच कोण 60° है। कार्य ज्ञात करें।"
+        )}</p>
+        <p>W = Fs cos θ = 10 × 5 × cos 60°</p>
+        <p>W = 50 × ½ = <b>25 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Example 2 — Work–energy theorem", "उदाहरण 2 — कार्य–ऊर्जा प्रमेय")}</summary>
+        <p>${tr(
+          "A 2 kg object speeds up from 3 m/s to 7 m/s. Find the net work.",
+          "2 kg की वस्तु की चाल 3 m/s से बढ़कर 7 m/s हो जाती है। कुल कार्य ज्ञात करें।"
+        )}</p>
+        <p>W<sub>net</sub> = ½m(v² − u²)</p>
+        <p>= ½ × 2 × (49 − 9) = <b>40 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Example 3 — Lifting and power", "उदाहरण 3 — उठाना और शक्ति")}</summary>
+        <p>${tr(
+          "A 20 kg load is lifted vertically by 2 m at constant speed in 4 s. Take g = 9.8 m/s². Find the work done against gravity and the average power.",
+          "20 kg का भार 4 s में स्थिर चाल से 2 m ऊपर उठाया जाता है। g = 9.8 m/s² लें। गुरुत्व के विरुद्ध कार्य और औसत शक्ति ज्ञात करें।"
+        )}</p>
+        <p>W = mgh = 20 × 9.8 × 2 = <b>392 J</b></p>
+        <p>P<sub>avg</sub> = W/t = 392/4 = <b>98 W</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Example 4 — Spring potential energy", "उदाहरण 4 — स्प्रिंग की स्थितिज ऊर्जा")}</summary>
+        <p>${tr(
+          "A spring has k = 200 N/m and is stretched by 0.10 m. Find stored energy.",
+          "एक स्प्रिंग का k = 200 N/m है और उसे 0.10 m खींचा जाता है। संचित ऊर्जा ज्ञात करें।"
+        )}</p>
+        <p>U = ½kx² = ½ × 200 × (0.10)²</p>
+        <p>U = 100 × 0.01 = <b>1 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Example 5 — Area under an F–x graph", "उदाहरण 5 — F–x ग्राफ के नीचे का क्षेत्रफल")}</summary>
+        <p>${tr(
+          "A force increases uniformly from 0 N to 8 N over a displacement of 3 m. Find the work from the graph.",
+          "3 m विस्थापन में बल 0 N से बढ़कर समान रूप से 8 N हो जाता है। ग्राफ से कार्य ज्ञात करें।"
+        )}</p>
+        <p>W = area of triangle = ½ × base × height</p>
+        <p>W = ½ × 3 × 8 = <b>12 J</b></p>
+      </details>
+
+      <h3>${tr("12. Quick formula sheet", "12. त्वरित सूत्र-संग्रह")}</h3>
+      <ul>
+        <li>W = Fs cos θ</li>
+        <li>W = ∫ F<sub>x</sub> dx</li>
+        <li>K = ½mv²</li>
+        <li>W<sub>net</sub> = ΔK = K<sub>f</sub> − K<sub>i</sub></li>
+        <li>U<sub>gravity</sub> = mgh</li>
+        <li>U<sub>spring</sub> = ½kx²</li>
+        <li>K + U = constant (conservative forces only)</li>
+        <li>P<sub>avg</sub> = W/Δt</li>
+        <li>P = F · v = Fv cos θ</li>
+        <li>Efficiency = useful output ÷ input × 100%</li>
+      </ul>
+      <p><b>${tr("Units:", "मात्रक:")}</b> ${tr(
+        "Work and energy: joule (J); power: watt (W); force: newton (N); spring constant: N/m.",
+        "कार्य और ऊर्जा: जूल (J); शक्ति: वाट (W); बल: न्यूटन (N); स्प्रिंग नियतांक: N/m."
+      )}</p>
+
+      <h3>${tr("13. Common mistakes", "13. सामान्य गलतियाँ")}</h3>
+      <ul>
+        <li>${tr("Forgetting cos θ in W = Fs cos θ.", "W = Fs cos θ में cos θ भूल जाना।")}</li>
+        <li>${tr("Using speed instead of speed squared in kinetic energy.", "गतिज ऊर्जा में चाल के वर्ग की जगह केवल चाल का उपयोग करना।")}</li>
+        <li>${tr("Confusing net work with work done by one force.", "कुल कार्य और किसी एक बल द्वारा किए गए कार्य को एक समझ लेना।")}</li>
+        <li>${tr("Applying conservation of mechanical energy when non-conservative work has not been accounted for.", "असंरक्षी बल के कार्य को ध्यान में रखे बिना यांत्रिक ऊर्जा संरक्षण लागू करना।")}</li>
+        <li>${tr("Forgetting units or mixing grams with kilograms.", "मात्रक भूल जाना या ग्राम और किलोग्राम को मिलाना।")}</li>
+      </ul>
+
+      <h3>${tr("14. Practice questions", "14. अभ्यास प्रश्न")}</h3>
+      <p>${tr(
+        "Try each question before opening its answer. Show the formula, substitution and unit in numerical answers.",
+        "उत्तर खोलने से पहले प्रत्येक प्रश्न हल करें। संख्यात्मक उत्तर में सूत्र, मान रखने के चरण और मात्रक लिखें।"
+      )}</p>
+
+      <details>
+        <summary>${tr("Q1. A 15 N force acts along a 4 m displacement. Find work.", "प्रश्न 1. 15 N का बल 4 m विस्थापन की दिशा में लगता है। कार्य ज्ञात करें।")}</summary>
+        <p>W = Fs = 15 × 4 = <b>60 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Q2. A 5 kg object moves at 4 m/s. Find its kinetic energy.", "प्रश्न 2. 5 kg की वस्तु 4 m/s से चलती है। गतिज ऊर्जा ज्ञात करें।")}</summary>
+        <p>K = ½ × 5 × 4² = <b>40 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Q3. A 3 kg object falls through 5 m. Find the loss in gravitational potential energy. Take g = 10 m/s².", "प्रश्न 3. 3 kg की वस्तु 5 m नीचे गिरती है। स्थितिज ऊर्जा में कमी ज्ञात करें। g = 10 m/s² लें।")}</summary>
+        <p>Loss = mgh = 3 × 10 × 5 = <b>150 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Q4. A machine does 600 J of work in 12 s. Find average power.", "प्रश्न 4. एक मशीन 12 s में 600 J कार्य करती है। औसत शक्ति ज्ञात करें।")}</summary>
+        <p>P = W/t = 600/12 = <b>50 W</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Q5. A 20 N force acts perpendicular to a 6 m displacement. Find work.", "प्रश्न 5. 20 N का बल 6 m विस्थापन के लंबवत लगता है। कार्य ज्ञात करें।")}</summary>
+        <p>W = Fs cos 90° = <b>0 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Q6. A 1000 J input produces 750 J useful output. Find efficiency.", "प्रश्न 6. 1000 J इनपुट से 750 J उपयोगी आउटपुट मिलता है। दक्षता ज्ञात करें।")}</summary>
+        <p>Efficiency = (750/1000) × 100% = <b>75%</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Q7. A 4 kg object changes speed from 2 m/s to 6 m/s. Find net work.", "प्रश्न 7. 4 kg की वस्तु की चाल 2 m/s से 6 m/s हो जाती है। कुल कार्य ज्ञात करें।")}</summary>
+        <p>W = ½ × 4 × (6² − 2²) = 2 × 32 = <b>64 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Q8. A spring with k = 100 N/m is compressed by 0.20 m. Find its stored energy.", "प्रश्न 8. k = 100 N/m वाली स्प्रिंग को 0.20 m दबाया जाता है। संचित ऊर्जा ज्ञात करें।")}</summary>
+        <p>U = ½ × 100 × (0.20)² = <b>2 J</b></p>
+      </details>
+
+      <details>
+        <summary>${tr("Q9. State the work–energy theorem.", "प्रश्न 9. कार्य–ऊर्जा प्रमेय लिखें।")}</summary>
+        <p>${tr(
+          "The net work done on an object equals the change in its kinetic energy: Wnet = Kf − Ki.",
+          "किसी वस्तु पर किया गया कुल कार्य उसकी गतिज ऊर्जा में परिवर्तन के बराबर होता है: Wnet = Kf − Ki."
+        )}</p>
+      </details>
+
+      <details>
+        <summary>${tr("Q10. When is mechanical energy conserved?", "प्रश्न 10. यांत्रिक ऊर्जा कब संरक्षित रहती है?")}</summary>
+        <p>${tr(
+          "When only conservative forces do work, total mechanical energy K + U remains constant.",
+          "जब केवल संरक्षी बल कार्य करते हैं, तब कुल यांत्रिक ऊर्जा K + U स्थिर रहती है।"
+        )}</p>
+      </details>
+
+      <h3>${tr("15. Revision checklist", "15. दोहराव सूची")}</h3>
+      <ul>
+        <li>${tr("I can calculate work for different angles.", "मैं विभिन्न कोणों पर कार्य निकाल सकता हूँ।")}</li>
+        <li>${tr("I can read work from a force–displacement graph.", "मैं बल–विस्थापन ग्राफ से कार्य निकाल सकता हूँ।")}</li>
+        <li>${tr("I can use the work–energy theorem in numericals.", "मैं संख्यात्मक प्रश्नों में कार्य–ऊर्जा प्रमेय लगा सकता हूँ।")}</li>
+        <li>${tr("I can apply gravitational and spring potential energy.", "मैं गुरुत्वीय और स्प्रिंग स्थितिज ऊर्जा का उपयोग कर सकता हूँ।")}</li>
+        <li>${tr("I can distinguish energy from power and state their units.", "मैं ऊर्जा और शक्ति में अंतर तथा उनके मात्रक बता सकता हूँ।")}</li>
+      </ul>
+
+      <div class="form-row">
+        <button class="button primary" data-action="mark-chapter"
+          data-subject="physics" data-chapter="${index}">
+          ${done ? tr("✓ Completed", "✓ पूरा हुआ") : tr("Mark chapter complete", "अध्याय पूरा चिह्नित करें")}
+        </button>
+        <button class="button secondary" data-action="save-note"
+          data-subject="physics" data-chapter="${index}">
+          ${tr("Save formula sheet to my notes", "सूत्र-संग्रह नोट्स में सहेजें")}
+        </button>
+      </div>
+    </div>`;
+}
+  
+  function genericNote(s,ch,index){
+  if (s.id === "physics" && index === 4) {
+    return workEnergyPowerNote(index);
+    
+if (action === "save-note") {
+  const s = subjects.find(s => s.id === el.dataset.subject);
+  if (!s) return;
+
+  const chapterIndex = Number(el.dataset.chapter);
+  const title = s.chapters[chapterIndex];
+
+  const savedText =
+    s.id === "physics" && chapterIndex === 4
+      ? tr(
+          "Work, Energy and Power formula sheet:\n" +
+          "W = Fs cos(theta); Wnet = change in K; " +
+          "K = 1/2 mv^2; Ugravity = mgh; " +
+          "Uspring = 1/2 kx^2; K + U = constant " +
+          "when only conservative forces do work; " +
+          "Pavg = W/time; P = F dot v; " +
+          "Efficiency = useful output/input x 100%.",
+          "कार्य, ऊर्जा और शक्ति सूत्र-संग्रह:\n" +
+          "W = Fs cos(theta); कुल कार्य = गतिज ऊर्जा में परिवर्तन; " +
+          "K = 1/2 mv^2; गुरुत्वीय स्थितिज ऊर्जा = mgh; " +
+          "स्प्रिंग ऊर्जा = 1/2 kx^2; केवल संरक्षी बल कार्य करें तो " +
+          "K + U स्थिर रहता है; औसत शक्ति = कार्य/समय; " +
+          "तात्क्षणिक शक्ति = F dot v; " +
+          "दक्षता = उपयोगी आउटपुट/इनपुट x 100%."
+        )
+      : tr(
+          "Review this chapter and add your own key points.",
+          "इस अध्याय को दोहराएँ और अपने मुख्य बिंदु जोड़ें।"
+        );
+
+  state.notes.unshift({
+    id: uid(),
+    title,
+    subject: s.name,
+    date: new Date().toLocaleDateString(),
+    text: savedText
+  });
+
+  save();
+  toast(tr("Formula sheet saved to your notes", "सूत्र-संग्रह नोट्स में सहेजा गया"));
+}
+    
+  }
+
+  const data = {
 })();
